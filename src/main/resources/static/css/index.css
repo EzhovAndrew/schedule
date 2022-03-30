@@ -1,0 +1,26 @@
+.modal-body-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.mid-height {
+    height: 200px;
+}
+
+.fluid-height {
+    height: auto;
+}
+
+.greetings {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 100px;
+    color: #4169E1;
+    margin: 300px auto;
+    width: 800px;
+    text-align: center;
+}
+
+div.card {
+    margin-bottom: 20px;
+}

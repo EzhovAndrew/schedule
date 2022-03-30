@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head lang="ru">
+    <title>Учебное расписание</title>
+    <meta charset="utf-8">
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+    <script defer src="/js/functions.js"></script>
+    <script defer src="/js/adders/adders.js"></script>
+    <script defer src="/js/getters/getters.js"></script>
+    <script defer src="/js/getters/studentGetter.js"></script>
+    <script defer src="/js/getters/profGetter.js"></script>
+    <script defer src="/js/getters/classroomGetter.js"></script>
+    <script defer src="/js/getters/courseGetter.js"></script>
+    <script defer src="/js/getters/lessonGetter.js"></script>
+    <script defer src="/js/adders/profAdder.js"></script>
+    <script defer src="/js/adders/studentAdder.js"></script>
+    <script defer src="/js/adders/classroomAdder.js"></script>
+    <script defer src="/js/adders/lessonAdder.js"></script>
+    <script defer src="/js/adders/courseAdder.js"></script>
+    <script defer src="/js/deleters/objectDeleter.js"></script>
+    <script defer src="/js/editors/editors.js"></script>
+    <script defer src="/js/editors/studentEditor.js"></script>
+    <script defer src="/js/editors/profEditor.js"></script>
+    <script defer src="/js/editors/courseEditor.js"></script>
+    
+
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/icons/house-fill.svg" alt="home" width="30" height="24" class="d-inline-block align-text-top">
+                Домой
+            </a>
+            <div>
+                <button id="Get-button" type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#main-modal">Получить</button>
+                <button id="Add-button" type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#main-modal">Добавить</button>
+            </div>
+            <img src="/icons/book-half.svg" alt="book" width="40" height="35" class="d-inline-block align-text-top">
+        </div>
+    </nav>
+
+    <main>
+        <div class="container-md">
+            <div class="greetings">
+                <p>Добро пожаловать!</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="main-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="modal-hint">Modal body text goes here.</p>
+              <div class="center-block justify-content-around mid-height modal-body-buttons">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
