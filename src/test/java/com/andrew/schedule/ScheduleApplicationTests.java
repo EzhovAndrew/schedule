@@ -42,7 +42,7 @@ public class ScheduleApplicationTests {
         assertEquals("a", coursesView.name);
         assertEquals("aa", coursesView.type);
         assertEquals("1111", coursesView.year);
-        assert (1L == coursesView.times_per_week);
+        assertEquals (1L, (Object)coursesView.times_per_week);
 
         Long id = coursesView.id;
 
@@ -66,7 +66,7 @@ public class ScheduleApplicationTests {
         assertEquals("b", coursesView.name);
         assertEquals("bb", coursesView.type);
         assertEquals("2222", coursesView.year);
-        assert (2L == coursesView.times_per_week);
+        assertEquals(2L, (Object)coursesView.times_per_week);
 
         coursesController.delete(id);
     }
@@ -80,16 +80,16 @@ public class ScheduleApplicationTests {
 
         List<ClassroomView> classroomViewList = classroomsController.getAll();
         classroomView = classroomViewList.get(classroomViewList.size() - 1);
-        assert(classroomView.capacity == 222L);
-        assert(classroomView.number == 222L);
+        assertEquals(222L, (Object)classroomView.capacity);
+        assertEquals(222L, (Object)classroomView.number);
 
         classroomsController.delete(classroomView.number);
 
         classroomViewList = classroomsController.getByStartTime("2000-10-10T00:00", "2200-10-10T00:00");
-        assert(classroomViewList.size() == 0);
+        assertEquals(0, classroomViewList.size());
 
         classroomViewList = classroomsController.getByStartTime("2000-10-10T00:00", "2000-10-10T00:01");
-        assert(classroomViewList.size() == 3);
+        assertEquals(3, classroomViewList.size());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class ScheduleApplicationTests {
         professorsController.edit(id, professorsView);
 
         professorsViewList = professorsController.get("2", "2", "2");
-        assert(professorsViewList.size() == 1);
+        assertEquals(professorsViewList.size(), 1);
 
         professorsController.delete(id);
     }
@@ -136,9 +136,9 @@ public class ScheduleApplicationTests {
         assertEquals("1", studentsView.name);
         assertEquals("1", studentsView.surname);
         assertEquals("1", studentsView.patronymic);
-        assert(1L == studentsView.year);
-        assert(1L == studentsView.group);
-        assert(1L == studentsView.stream);
+        assertEquals(1L, (Object)studentsView.year);
+        assertEquals(1L, (Object)studentsView.group);
+        assertEquals(1L, (Object)studentsView.stream);
 
         Long id = studentsView.id;
 
@@ -152,7 +152,7 @@ public class ScheduleApplicationTests {
         studentsController.edit(id, studentsView);
 
         studentsViewList = studentsController.get("2", "2", "2", 2L, 2L);
-        assert(1 == studentsViewList.size());
+        assertEquals(1, studentsViewList.size());
 
         studentsController.delete(id);
     }
@@ -167,12 +167,12 @@ public class ScheduleApplicationTests {
 
 
         List<LessonsView> lessonsViewList = lessonsController.getByClassroomAndTime(1L, "1000-11-22T00:00", "1000-12-24T00:00");
-        assert(1 == lessonsViewList.size());
+        assertEquals(1, lessonsViewList.size());
         lessonsViewList = lessonsController.getByProfessorIdAndTime(1L,  "1000-11-22T00:00", "1000-12-24T00:00");
-        assert(1 == lessonsViewList.size());
+        assertEquals(1, lessonsViewList.size());
         lessonsViewList = lessonsController.getByStudentIdAndTime(1L,  "1000-11-22T00:00", "1000-12-24T00:00");
-        assert(1 == lessonsViewList.size());
+        assertEquals(1, lessonsViewList.size());
 
-        lessonsController.delete(lessonsViewList.get(lessonsViewList.size()-1).id);
+        lessonsController.delete(lessonsViewList.get(0).id);
     }
 }
