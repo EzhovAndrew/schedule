@@ -109,6 +109,11 @@ public class SeleniumTests {
         button = driver.findElement(By.id("formStudentsGetButton"));
         button.click();
         wait.until(visibilityOfElementLocated(By.cssSelector("div.card")));
+        wait.until(textToBePresentInElement(By.cssSelector("p[name-holder]"), "seleniumStudent"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[surname-holder]"), "seleniumStudent"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[patronymic-holder]"), "seleniumStudent"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[group-holder]"), "328"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[stream-holder]"), "3"));
         Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение студентов");
         Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Данные успешно загружены!");
 
@@ -119,8 +124,11 @@ public class SeleniumTests {
         wait.until(visibilityOfElementLocated(By.cssSelector("#FormToEditStudent")));
         Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Редактирование студента");
         Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+        driver.findElement(By.id("StudentNameFieldInput")).clear();
         driver.findElement(By.id("StudentNameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentSurnameFieldInput")).clear();
         driver.findElement(By.id("StudentSurnameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentPatronymicFieldInput")).clear();
         driver.findElement(By.id("StudentPatronymicFieldInput")).sendKeys("seleniumStudent2");
         button = driver.findElement(By.cssSelector("button[type=submit]"));
         button.click();
@@ -129,9 +137,56 @@ public class SeleniumTests {
         button = driver.findElement(By.cssSelector("button.btn-close"));
         button.click();
 
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-students")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+
+        wait.until(visibilityOfElementLocated(By.cssSelector("#FormToGetStudents")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение студентов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+
+        driver.findElement(By.id("StudentNameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentSurnameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentPatronymicFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentGroupFieldInput")).sendKeys("328");
+        driver.findElement(By.id("StudentStreamFieldInput")).sendKeys("3");
+        button = driver.findElement(By.cssSelector("button[type=submit]"));
+        button.click();
+        wait.until(visibilityOfElementLocated(By.cssSelector("div.card")));
+        wait.until(textToBePresentInElement(By.cssSelector("p[name-holder]"), "seleniumStudent2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[surname-holder]"), "seleniumStudent2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[patronymic-holder]"), "seleniumStudent2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[group-holder]"), "328"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[stream-holder]"), "3"));
+        button = driver.findElement(By.cssSelector("button.btn-close"));
+        button.click();
+
         button = driver.findElement(By.cssSelector("button[button-deleter]"));
         button.click();
+        wait.until(stalenessOf(button));
         Assert.assertEquals(driver.findElement(By.cssSelector(".container-md")).getText(), "");
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-students")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+
+        wait.until(visibilityOfElementLocated(By.cssSelector("#FormToGetStudents")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение студентов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+
+        driver.findElement(By.id("StudentNameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentSurnameFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentPatronymicFieldInput")).sendKeys("seleniumStudent2");
+        driver.findElement(By.id("StudentGroupFieldInput")).sendKeys("328");
+        driver.findElement(By.id("StudentStreamFieldInput")).sendKeys("3");
+        button = driver.findElement(By.cssSelector("button[type=submit]"));
+        button.click();
+        Assert.assertEquals(driver.findElement(By.cssSelector(".container-md")).getText(), "По вашему запросу ничего не нашлось.");
     }
 
 
@@ -212,6 +267,10 @@ public class SeleniumTests {
         button = driver.findElement(By.id("formProfsGetButton"));
         button.click();
         wait.until(visibilityOfElementLocated(By.cssSelector("div.card")));
+        wait.until(textToBePresentInElement(By.cssSelector("p[name-holder]"), "seleniumProfessor"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[surname-holder]"), "seleniumProfessor"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[patronymic-holder]"), "seleniumProfessor"));
+
         Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение преподавателей");
         Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Данные успешно загружены!");
 
@@ -222,7 +281,11 @@ public class SeleniumTests {
         wait.until(visibilityOfElementLocated(By.cssSelector("#FormToEditProf")));
         Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Редактирование преподавателя");
         Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+        driver.findElement(By.id("ProfNameFieldInput")).clear();
+        driver.findElement(By.id("ProfNameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfSurnameFieldInput")).clear();
         driver.findElement(By.id("ProfSurnameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfPatronymicFieldInput")).clear();
         driver.findElement(By.id("ProfPatronymicFieldInput")).sendKeys("seleniumProfessor2");
         button = driver.findElement(By.cssSelector("button[type=submit]"));
         button.click();
@@ -230,9 +293,55 @@ public class SeleniumTests {
         wait.until(textToBePresentInElement(By.cssSelector("#modal-hint"), "Данные о преподавателе успешно обновлены!"));
         button = driver.findElement(By.cssSelector("button.btn-close"));
         button.click();
+
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-profs")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+
+        wait.until(visibilityOfElementLocated(By.cssSelector("#FormToGetProfs")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение преподавателей");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+
+        driver.findElement(By.id("ProfNameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfSurnameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfPatronymicFieldInput")).sendKeys("seleniumProfessor2");
+
+        button = driver.findElement(By.id("formProfsGetButton"));
+        button.click();
+        wait.until(visibilityOfElementLocated(By.cssSelector("div.card")));
+        wait.until(textToBePresentInElement(By.cssSelector("p[name-holder]"), "seleniumProfessor2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[surname-holder]"), "seleniumProfessor2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[patronymic-holder]"), "seleniumProfessor2"));
+
+        button = driver.findElement(By.cssSelector("button.btn-close"));
+        button.click();
+
         button = driver.findElement(By.cssSelector("button[button-deleter]"));
         button.click();
+        wait.until(stalenessOf(button));
         Assert.assertEquals(driver.findElement(By.cssSelector(".container-md")).getText(), "");
+
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-profs")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+
+        wait.until(visibilityOfElementLocated(By.cssSelector("#FormToGetProfs")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение преподавателей");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+
+        driver.findElement(By.id("ProfNameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfSurnameFieldInput")).sendKeys("seleniumProfessor2");
+        driver.findElement(By.id("ProfPatronymicFieldInput")).sendKeys("seleniumProfessor2");
+
+        button = driver.findElement(By.id("formProfsGetButton"));
+        button.click();
+        wait.until(textToBePresentInElement(By.cssSelector(".container-md"), "По вашему запросу ничего не нашлось."));
     }
 
     @Test(priority=7)
@@ -299,6 +408,9 @@ public class SeleniumTests {
         getButton.click();
 
         wait.until(visibilityOfElementLocated(By.cssSelector("div.card")));
+        wait.until(textToBePresentInElement(By.cssSelector("h5[name-holder]"), "seleniumCourse"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[times-week-holder]"), "3"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[year-holder]"), "2022"));
         wait.until(textToBePresentInElement(By.cssSelector("h5.modal-title"), "Получение объектов"));
         wait.until(textToBePresentInElement(By.cssSelector("#modal-hint"), "Данные успешно загружены!"));
         button = driver.findElement(By.cssSelector("button.btn-close"));
@@ -309,6 +421,7 @@ public class SeleniumTests {
         wait.until(visibilityOfElementLocated(By.cssSelector("#FormToEditCourse")));
         Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Редактирование курса");
         Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Заполните форму");
+        driver.findElement(By.id("CourseAddNameFieldInput")).clear();
         driver.findElement(By.id("CourseAddNameFieldInput")).sendKeys("seleniumCourse2");
         driver.findElement(By.id("CourseAddNumInPeriodFieldInput")).clear();
         driver.findElement(By.id("CourseAddNumInPeriodFieldInput")).sendKeys("5");
@@ -320,8 +433,31 @@ public class SeleniumTests {
         wait.until(textToBePresentInElement(By.cssSelector("#modal-hint"), "Курс успешно обновлен!"));
         button = driver.findElement(By.cssSelector("button.btn-close"));
         button.click();
+
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-courses")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+        wait.until(textToBePresentInElement(By.cssSelector("h5[name-holder]"), "seleniumCourse2"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[times-week-holder]"), "5"));
+        wait.until(textToBePresentInElement(By.cssSelector("p[year-holder]"), "2021"));
+        button = driver.findElement(By.cssSelector("button.btn-close"));
+        button.click();
+
         button = driver.findElement(By.cssSelector("button[button-deleter]"));
         button.click();
+        wait.until(stalenessOf(button));
+        Assert.assertEquals(driver.findElement(By.cssSelector(".container-md")).getText(), "");
+
+        button = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-button")));
+        button.click();
+        getButton = wait.until(visibilityOfElementLocated(By.cssSelector("#Get-btn-courses")));
+        Assert.assertEquals(driver.findElement(By.cssSelector("h5.modal-title")).getText(), "Получение объектов");
+        Assert.assertEquals(driver.findElement(By.cssSelector("#modal-hint")).getText(), "Нажмите на кнопку желаемого объекта");
+        getButton.click();
+        wait.until(textToBePresentInElement(By.cssSelector("#modal-hint"), "Данные успешно загружены!"));
         Assert.assertEquals(driver.findElement(By.cssSelector(".container-md")).getText(), "");
     }
 
